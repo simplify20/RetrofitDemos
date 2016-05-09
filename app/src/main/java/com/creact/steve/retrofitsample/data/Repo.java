@@ -1,4 +1,4 @@
-package com.creact.steve.retrofitsample;
+package com.creact.steve.retrofitsample.data;
 
 /**
  * Created by Administrator on 2016/5/8.

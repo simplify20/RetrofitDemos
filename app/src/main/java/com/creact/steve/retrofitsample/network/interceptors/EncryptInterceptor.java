@@ -1,4 +1,4 @@
-package com.creact.steve.retrofitsample.interceptors;
+package com.creact.steve.retrofitsample.network.interceptors;
 
 import java.io.IOException;
 

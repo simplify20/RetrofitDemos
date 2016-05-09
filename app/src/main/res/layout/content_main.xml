@@ -25,8 +25,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="searchRepos"
-            android:text="Hello World!" />
+            android:onClick="searchRepo"
+            android:text="搜索仓库" />
 
     </LinearLayout>
 </ScrollView>

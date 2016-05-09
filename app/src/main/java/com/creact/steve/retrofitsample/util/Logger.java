@@ -1,6 +1,8 @@
-package com.creact.steve.retrofitsample;
+package com.creact.steve.retrofitsample.util;
 
 import android.util.Log;
+
+import com.creact.steve.retrofitsample.BuildConfig;
 
 /**
  * Created by Administrator on 2016/5/8.

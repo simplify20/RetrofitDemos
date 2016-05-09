@@ -1,4 +1,4 @@
-package com.creact.steve.retrofitsample.progress;
+package com.creact.steve.retrofitsample.network.progress;
 
 
 import java.io.IOException;
