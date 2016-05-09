@@ -1,6 +1,4 @@
-package com.creact.steve.retrofitsample.network.core;
-
-import com.creact.steve.retrofitsample.network.core.calladapter.MyCallAdapterFactory;
+package com.creact.steve.retrofitsample.network.adapter;
 
 import retrofit2.CallAdapter;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

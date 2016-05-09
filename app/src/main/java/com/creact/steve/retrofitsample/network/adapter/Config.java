@@ -1,9 +1,7 @@
-package com.creact.steve.retrofitsample.network.core;
+package com.creact.steve.retrofitsample.network.adapter;
 
 
 import com.creact.steve.retrofitsample.biz.github.ApiConstants;
-import com.creact.steve.retrofitsample.network.HttpClientWrapper;
-import com.creact.steve.retrofitsample.network.core.calladapter.MyCallAdapterFactory;
 import com.creact.steve.retrofitsample.network.util.HttpClientFactory;
 
 import java.util.concurrent.Executor;

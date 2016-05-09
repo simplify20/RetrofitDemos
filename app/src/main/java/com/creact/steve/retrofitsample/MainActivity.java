@@ -3,7 +3,6 @@ package com.creact.steve.retrofitsample;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,30 +11,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.creact.steve.retrofitsample.biz.github.ApiConstants;
 import com.creact.steve.retrofitsample.biz.github.GitHubService;
 import com.creact.steve.retrofitsample.data.Repo;
-import com.creact.steve.retrofitsample.network.HttpClientWrapper;
-import com.creact.steve.retrofitsample.network.core.Config;
-import com.creact.steve.retrofitsample.network.core.MyCall;
-import com.creact.steve.retrofitsample.network.core.MyCallback;
-import com.creact.steve.retrofitsample.network.core.MyResponse;
-import com.creact.steve.retrofitsample.network.core.calladapter.MyCallAdapterFactory;
-import com.creact.steve.retrofitsample.network.interceptors.EncryptInterceptor;
-import com.creact.steve.retrofitsample.network.interceptors.HeadInterceptor;
-import com.creact.steve.retrofitsample.network.interceptors.LoggingInterceptor;
-import com.creact.steve.retrofitsample.network.util.HttpClientFactory;
+import com.creact.steve.retrofitsample.network.adapter.Config;
+import com.creact.steve.retrofitsample.network.adapter.MyCall;
+import com.creact.steve.retrofitsample.network.adapter.MyCallback;
+import com.creact.steve.retrofitsample.network.adapter.MyResponse;
 import com.creact.steve.retrofitsample.network.util.ServiceManager;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     EditText mUserEt;

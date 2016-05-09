@@ -1,4 +1,4 @@
-package com.creact.steve.retrofitsample.network.core;
+package com.creact.steve.retrofitsample.network.adapter;
 
 import retrofit2.Converter;
 import retrofit2.converter.gson.GsonConverterFactory;

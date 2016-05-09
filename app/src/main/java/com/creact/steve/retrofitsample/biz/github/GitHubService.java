@@ -1,11 +1,10 @@
 package com.creact.steve.retrofitsample.biz.github;
 
 import com.creact.steve.retrofitsample.data.Repo;
-import com.creact.steve.retrofitsample.network.core.MyCall;
+import com.creact.steve.retrofitsample.network.adapter.MyCall;
 
 import java.util.List;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 

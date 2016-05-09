@@ -1,4 +1,4 @@
-package com.creact.steve.retrofitsample.network.core;
+package com.creact.steve.retrofitsample.network.adapter;
 
 import java.io.IOException;
 

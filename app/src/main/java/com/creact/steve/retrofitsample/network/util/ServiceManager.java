@@ -1,6 +1,6 @@
 package com.creact.steve.retrofitsample.network.util;
 
-import com.creact.steve.retrofitsample.network.core.Config;
+import com.creact.steve.retrofitsample.network.adapter.Config;
 
 import retrofit2.Retrofit;
 

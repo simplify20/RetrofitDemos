@@ -1,7 +1,4 @@
-package com.creact.steve.retrofitsample.network.core.calladapter;
-
-import com.creact.steve.retrofitsample.network.core.MyCall;
-import com.creact.steve.retrofitsample.network.core.MyRealCall;
+package com.creact.steve.retrofitsample.network.adapter;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
