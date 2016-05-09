@@ -1,6 +1,6 @@
 package com.creact.steve.retrofitsample.network.util;
 
-import com.creact.steve.retrofitsample.network.adapter.Config;
+import com.creact.steve.retrofitsample.network.adapter.Builder;
 
 import retrofit2.Retrofit;
 
@@ -22,10 +22,10 @@ public final class ServiceManager {
     private ServiceManager() {
     }
 
-    public  <T> T getService(Config config, Class<T> serviceClass) {
-        checkNotNull(config, "config can't be null");
-        Retrofit retrofit = config
-                .builder()
+    public  <T> T getService(Builder builder, Class<T> serviceClass) {
+        checkNotNull(builder, "builder can't be null");
+        Retrofit retrofit = builder
+                .actual()
                 .build();
         T result = retrofit.create(serviceClass);
         return result;

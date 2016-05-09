@@ -13,22 +13,13 @@ import android.widget.Toast;
 
 import com.creact.steve.retrofitsample.biz.github.GitHubService;
 import com.creact.steve.retrofitsample.data.Repo;
-import com.creact.steve.retrofitsample.network.adapter.Config;
+import com.creact.steve.retrofitsample.network.adapter.Builder;
 import com.creact.steve.retrofitsample.network.adapter.MyCall;
 import com.creact.steve.retrofitsample.network.adapter.MyCallback;
 import com.creact.steve.retrofitsample.network.adapter.MyResponse;
 import com.creact.steve.retrofitsample.network.util.ServiceManager;
 
-import java.io.IOException;
 import java.util.List;
-
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     EditText mUserEt;
@@ -60,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         GitHubService githubService = ServiceManager
                 .getInstance()
-                .getService(Config.getDefault(), GitHubService.class);
+                .getService(Builder.getDefault(), GitHubService.class);
 
         MyCall<List<Repo>> call = githubService.listRepos(name);
         final ProgressDialog progressDialog = ProgressDialog.show(this,"搜索中...","",true);

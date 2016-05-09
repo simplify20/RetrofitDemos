@@ -14,71 +14,71 @@ import static com.creact.steve.retrofitsample.util.Utils.checkNotNull;
 /**
  * Created by Administrator on 2016/5/9.
  */
-public final class Config {
+public final class Builder {
 
 
     private Retrofit.Builder mBuilder;
 
-    public static Config newConfig() {
-        return new Config(new Retrofit.Builder());
+    public static Builder newBuilder() {
+        return new Builder(new Retrofit.Builder());
     }
 
-    public static Config getDefault(String baseUrl) {
+    public static Builder getDefault(String baseUrl) {
         Retrofit.Builder defaultBuilder = new Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
                 .client(HttpClientFactory.newLoggingClient())
                 .addCallAdapterFactory(MyCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create());
-        return new Config(defaultBuilder);
+        return new Builder(defaultBuilder);
 
     }
 
-    public static Config getDefault() {
+    public static Builder getDefault() {
         return getDefault(ApiConstants.BASE_URL);
     }
 
 
-    private Config(Retrofit.Builder builder) {
+    private Builder(Retrofit.Builder builder) {
         this.mBuilder = builder;
     }
 
 
-    public Retrofit.Builder builder() {
+    public Retrofit.Builder actual() {
         return mBuilder;
     }
 
-    public Config baseUrl(String baseUrl) {
+    public Builder baseUrl(String baseUrl) {
         mBuilder.baseUrl(baseUrl);
         return this;
     }
 
-    public Config client(HttpClientWrapper httpClientWrapper) {
+    public Builder client(HttpClientWrapper httpClientWrapper) {
         mBuilder.client(checkNotNull(httpClientWrapper, "httpClientWrapper can't be null").getActual());
         return this;
     }
 
-    public Config callFactory(CallFactoryWrapper callFactoryWrapper) {
+    public Builder callFactory(CallFactoryWrapper callFactoryWrapper) {
         mBuilder.callFactory(checkNotNull(callFactoryWrapper, "callFactoryWrapper can't be null").getActual());
         return this;
     }
 
-    public Config addConverterFactory(ConverterFactoryWrapper converterFactoryWrapper) {
+    public Builder addConverterFactory(ConverterFactoryWrapper converterFactoryWrapper) {
         mBuilder.addConverterFactory(checkNotNull(converterFactoryWrapper, "converterFactoryWrapper can't be null").getActual());
         return this;
     }
 
-    public Config addCallAdapterFactory(CallAdapterFactoryWrapper callAdapterFactoryWrapper) {
+    public Builder addCallAdapterFactory(CallAdapterFactoryWrapper callAdapterFactoryWrapper) {
         mBuilder.addCallAdapterFactory(checkNotNull(callAdapterFactoryWrapper, "callAdapterFactoryWrapper can't be null").getActual());
         return this;
     }
 
-    public Config callbackExecutor(Executor executor) {
+    public Builder callbackExecutor(Executor executor) {
         mBuilder.callbackExecutor(executor);
         return this;
     }
 
-    public Config validateEagerly(boolean validateEagerly) {
+    public Builder validateEagerly(boolean validateEagerly) {
         mBuilder.validateEagerly(validateEagerly);
         return this;
     }
