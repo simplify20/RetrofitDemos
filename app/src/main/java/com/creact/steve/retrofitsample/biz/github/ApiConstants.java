@@ -6,7 +6,8 @@ package com.creact.steve.retrofitsample.biz.github;
 public final class ApiConstants {
     public static final String BASE_URL = "https://api.github.com/";
     /**
-     * used by @see GitHubService
+     * used by
+     * @see GitHubService
      */
     public static final String API_USER_REPO = "users/{user}/repos";
     private ApiConstants(){}
