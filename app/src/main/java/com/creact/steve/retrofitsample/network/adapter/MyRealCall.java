@@ -17,7 +17,7 @@ import retrofit2.Response;
 public class MyRealCall<T> implements MyCall<T> {
     Call<T> mDelegate;
 
-    MainThreadExecutor callbackExecutor = new MainThreadExecutor();
+    Executor callbackExecutor = new MainThreadExecutor();
 
     public MyRealCall(Call<T> call) {
         if (call == null) {
