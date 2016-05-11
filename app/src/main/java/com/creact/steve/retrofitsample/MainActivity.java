@@ -21,8 +21,14 @@ import com.creact.steve.retrofitsample.network.util.ServiceManager;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
     EditText mUserEt;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,42 +60,25 @@ public class MainActivity extends AppCompatActivity {
                 .getService(Builder.getDefault(), GitHubService.class);
 
         MyCall<List<Repo>> call = githubService.listRepos(name);
-        final ProgressDialog progressDialog = ProgressDialog.show(this,"搜索中...","",true);
-        System.out.println(Thread.currentThread().getName());
+        final ProgressDialog progressDialog = ProgressDialog.show(this, "搜索中...", "", true);
         call.enqueue(new MyCallback<List<Repo>>() {
             @Override
             public void onResponse(MyCall<List<Repo>> call, MyResponse<List<Repo>> response) {
-                System.out.println(Thread.currentThread().getName());
                 progressDialog.dismiss();
-                if (response.code() == 200) {
-                    List<Repo> repos = response.body();
+                List<Repo> repos = response.body();
+                if (repos != null) {
                     final String repo = "Repositories of " + name + ":" + repos;
                     System.out.println(repo);
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, repo, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    String errorBody = response.errorBodyStr();
-                    System.out.println("Response Code:" + response.code() + "body:" + errorBody);
+                    Toast.makeText(MainActivity.this, repo, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(MyCall<List<Repo>> call, Throwable t) {
                 progressDialog.dismiss();
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(MainActivity.this, "Search failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                Toast.makeText(MainActivity.this, "Search failed", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });
     }
-
-    private Handler mHandler = new Handler();
 }

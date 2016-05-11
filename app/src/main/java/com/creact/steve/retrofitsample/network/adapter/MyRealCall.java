@@ -1,6 +1,10 @@
 package com.creact.steve.retrofitsample.network.adapter;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.io.IOException;
+import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,6 +16,8 @@ import retrofit2.Response;
  */
 public class MyRealCall<T> implements MyCall<T> {
     Call<T> mDelegate;
+
+    MainThreadExecutor callbackExecutor = new MainThreadExecutor();
 
     public MyRealCall(Call<T> call) {
         if (call == null) {
@@ -32,13 +38,26 @@ public class MyRealCall<T> implements MyCall<T> {
         }
         mDelegate.enqueue(new Callback<T>() {
             @Override
-            public void onResponse(Call<T> call, Response<T> response) {
-                callback.onResponse(MyRealCall.this,new MyResponse<T>(response));
+            public void onResponse(Call<T> call, final Response<T> response) {
+                callbackExecutor.execute(new Runnable() {
+                    @Override public void run() {
+                        if (mDelegate.isCanceled()) {
+                            // Emulate OkHttp's behavior of throwing/delivering an IOException on cancellation.
+                            callback.onFailure(MyRealCall.this, new IOException("Canceled"));
+                        } else {
+                            callback.onResponse(MyRealCall.this, new MyResponse(response));
+                        }
+                    }
+                });
             }
 
             @Override
-            public void onFailure(Call<T> call, Throwable t) {
-                callback.onFailure(MyRealCall.this,t);
+            public void onFailure(Call<T> call, final Throwable t) {
+                callbackExecutor.execute(new Runnable() {
+                    @Override public void run() {
+                        callback.onFailure(MyRealCall.this, t);
+                    }
+                });
             }
         });
     }
@@ -67,5 +86,13 @@ public class MyRealCall<T> implements MyCall<T> {
     @Override
     public MyRequest request() {
         return new MyRequest(mDelegate.request());
+    }
+
+    static class MainThreadExecutor implements Executor {
+        private final Handler handler = new Handler(Looper.getMainLooper());
+
+        @Override public void execute(Runnable r) {
+            handler.post(r);
+        }
     }
 }
