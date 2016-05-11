@@ -19,9 +19,6 @@ public final class Builder {
 
     private Retrofit.Builder mBuilder;
 
-    public static Builder newBuilder() {
-        return new Builder(new Retrofit.Builder());
-    }
 
     public static Builder getDefault(String baseUrl) {
         Retrofit.Builder defaultBuilder = new Retrofit
@@ -38,11 +35,17 @@ public final class Builder {
         return getDefault(ApiConstants.BASE_URL);
     }
 
-
-    private Builder(Retrofit.Builder builder) {
-        this.mBuilder = builder;
+    public Builder() {
+        this(new Retrofit.Builder());
     }
 
+    /**
+     * only in this class,can use Retrofit.Builder
+     * @param builder
+     */
+    private Builder(Retrofit.Builder builder){
+        this.mBuilder = builder;
+    }
 
     public Retrofit.Builder actual() {
         return mBuilder;
@@ -82,6 +85,5 @@ public final class Builder {
         mBuilder.validateEagerly(validateEagerly);
         return this;
     }
-
 
 }
