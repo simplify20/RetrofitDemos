@@ -62,6 +62,11 @@ public abstract class BaseInterceptor implements Interceptor {
                 .add(newHeaders.toString());
     }
 
+    /**
+     *
+     * @param request
+     * @param name
+     */
     public void removeHeaders(Request request, String name) {
         checkNotNull(request, "request can't be null");
         request.headers()
@@ -69,6 +74,12 @@ public abstract class BaseInterceptor implements Interceptor {
                 .removeAll(name);
     }
 
+    /**
+     *
+     * @param response
+     * @param name
+     * @param value
+     */
     public void addHeader(Response response, String name, String value) {
         checkNotNull(response, "response can't be null");
         response.headers()
@@ -76,6 +87,11 @@ public abstract class BaseInterceptor implements Interceptor {
                 .add(name, value);
     }
 
+    /**
+     *
+     * @param response
+     * @param headers
+     */
     public void addHeader(Response response, Map<String,String> headers) {
         checkNotNull(response, "response can't be null");
         checkNotNull(headers, "headers can't be null");
@@ -85,6 +101,11 @@ public abstract class BaseInterceptor implements Interceptor {
                 .add(newHeaders.toString());
     }
 
+    /**
+     *
+     * @param response
+     * @param name
+     */
     public void removeHeaders(Response response, String name) {
         checkNotNull(response, "response can't be null");
         response.headers()
@@ -92,6 +113,12 @@ public abstract class BaseInterceptor implements Interceptor {
                 .removeAll(name);
     }
 
+    /**
+     *
+     * @param request
+     * @param charset
+     * @return
+     */
     public String getRequestBody(Request request, Charset charset) {
         Buffer buffer = new Buffer();
         try {
@@ -103,11 +130,22 @@ public abstract class BaseInterceptor implements Interceptor {
         return body;
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public String getUrl(Request request) {
         checkNotNull(request, "request can't be null");
         return request.url().toString();
     }
 
+    /**
+     *
+     * @param response
+     * @return
+     * @throws EOFException
+     */
     public String getResponseBody(Response response) throws EOFException {
         ResponseBody responseBody = response.body();
         BufferedSource source = responseBody.source();
@@ -140,10 +178,20 @@ public abstract class BaseInterceptor implements Interceptor {
         return "";
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public Request manipulateRequest(Request request) {
         return request;
     }
 
+    /**
+     *
+     * @param response
+     * @return
+     */
     public Response manipulateResponse(Response response) {
         return response;
     }
