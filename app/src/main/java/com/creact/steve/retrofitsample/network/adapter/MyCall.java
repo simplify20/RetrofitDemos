@@ -1,5 +1,7 @@
 package com.creact.steve.retrofitsample.network.adapter;
 
+import com.creact.steve.retrofitsample.network.adapter.http.MyRequest;
+
 import java.io.IOException;
 
 /**

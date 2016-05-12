@@ -1,5 +1,6 @@
 package com.creact.steve.retrofitsample.network.util;
 
+import com.creact.steve.retrofitsample.network.HttpConfig;
 import com.creact.steve.retrofitsample.network.adapter.Builder;
 
 import retrofit2.Retrofit;
@@ -24,6 +25,8 @@ public final class ServiceManager {
 
     public  <T> T getService(Builder builder, Class<T> serviceClass) {
         checkNotNull(builder, "builder can't be null");
+        //// TODO: get http config,then create right OkHttp client instance,2016/5/12
+        HttpConfig httpConfig = builder.getHttpConfig();
         Retrofit retrofit = builder
                 .actual()
                 .build();

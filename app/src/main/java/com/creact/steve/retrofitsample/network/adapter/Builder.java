@@ -2,6 +2,8 @@ package com.creact.steve.retrofitsample.network.adapter;
 
 
 import com.creact.steve.retrofitsample.biz.github.ApiConstants;
+import com.creact.steve.retrofitsample.network.HttpConfig;
+import com.creact.steve.retrofitsample.network.interceptors.HttpConfigInterceptor;
 import com.creact.steve.retrofitsample.network.util.HttpClientFactory;
 
 import java.util.concurrent.Executor;
@@ -18,7 +20,7 @@ public final class Builder {
 
 
     private Retrofit.Builder mBuilder;
-
+    private HttpConfig mHttpConfig;
 
     public static Builder getDefault(String baseUrl) {
         Retrofit.Builder defaultBuilder = new Retrofit
@@ -41,14 +43,19 @@ public final class Builder {
 
     /**
      * only in this class,can use Retrofit.Builder
+     *
      * @param builder
      */
-    private Builder(Retrofit.Builder builder){
+    private Builder(Retrofit.Builder builder) {
         this.mBuilder = builder;
     }
 
     public Retrofit.Builder actual() {
         return mBuilder;
+    }
+
+    public HttpConfig getHttpConfig() {
+        return mHttpConfig;
     }
 
     public Builder baseUrl(String baseUrl) {
@@ -83,6 +90,11 @@ public final class Builder {
 
     public Builder validateEagerly(boolean validateEagerly) {
         mBuilder.validateEagerly(validateEagerly);
+        return this;
+    }
+
+    public Builder httpConfig(HttpConfig httpConfig) {
+        this.mHttpConfig = httpConfig;
         return this;
     }
 

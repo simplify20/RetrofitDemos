@@ -3,6 +3,8 @@ package com.creact.steve.retrofitsample.network.adapter;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.creact.steve.retrofitsample.network.adapter.http.MyRequest;
+
 import java.io.IOException;
 import java.util.concurrent.Executor;
 

@@ -1,4 +1,4 @@
-package com.creact.steve.retrofitsample.network.adapter;
+package com.creact.steve.retrofitsample.network.adapter.http;
 
 
 import okhttp3.Request;
@@ -17,4 +17,5 @@ public class MyRequest {
     public Request getActual() {
         return actual;
     }
+
 }
